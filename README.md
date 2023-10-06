@@ -1,2 +1,2 @@
 # AndroidJetpackComposePractices
-https://developer.android.com/jetpack/compose/setup
+https://developer.android.com/jetpack/compose/tutorial
