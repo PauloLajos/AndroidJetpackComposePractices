@@ -58,7 +58,11 @@ fun MessageCard(msg: Message) {
                 // Clip image to be shaped as a circle
                 .clip(CircleShape)
                 // Color
-                .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                .border(
+                    1.5.dp,
+                    MaterialTheme.colorScheme.primary,
+                    CircleShape
+                )
         )
 
         // Add a horizontal space between the image and the column
@@ -72,10 +76,17 @@ fun MessageCard(msg: Message) {
             )
             // Add a vertical space between the author and message texts
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = msg.body,
-                style = MaterialTheme.typography.bodyMedium
-            )
+            Surface(
+                shape = MaterialTheme.shapes.medium,
+                shadowElevation = 1.dp
+            ) {
+                Text(
+                    text = msg.body,
+                    modifier = Modifier.padding(all = 4.dp),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+
         }
     }
 }
