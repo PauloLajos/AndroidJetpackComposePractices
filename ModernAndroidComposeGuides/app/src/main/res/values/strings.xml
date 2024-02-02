@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Modern Android Compose Guides</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
