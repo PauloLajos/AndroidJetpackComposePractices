@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Task manager with Room</string>
+    <string name="title_activity_main">Task manager with Room</string>
 </resources>
