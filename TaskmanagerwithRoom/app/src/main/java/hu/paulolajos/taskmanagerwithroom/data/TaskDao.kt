@@ -10,7 +10,7 @@ import hu.paulolajos.taskmanagerwithroom.data.model.TaskItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface TaskDAO {
+interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(taskItem: TaskItem)
 

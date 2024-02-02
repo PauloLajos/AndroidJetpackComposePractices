@@ -8,7 +8,7 @@ import hu.paulolajos.taskmanagerwithroom.data.model.TaskItem
 
 @Database(entities = [TaskItem::class], version = 1, exportSchema = false)
 abstract class TaskDatabase : RoomDatabase() {
-    abstract fun itemDao(): TaskDAO
+    abstract fun itemDao(): TaskDao
 
     companion object {
         @Volatile
