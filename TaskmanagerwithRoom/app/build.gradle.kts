@@ -64,6 +64,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     // Room
     implementation("androidx.room:room-common:2.6.1")

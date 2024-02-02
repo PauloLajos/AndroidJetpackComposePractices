@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">Task manager with Room</string>
     <string name="title_activity_main">Task manager with Room</string>
+    <string name="back_button">Back</string>
+    <string name="task_entry_title">Add Item</string>
+    <string name="no_task_description">Oops!\nNo task.\nTap + to add.</string>
+    <string name="task_item_detail_title">Item Details</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="attention">Attention</string>
+    <string name="task">Task</string>
+    <string name="delete">Delete</string>
+    <string name="edit_task_title">Edit task</string>
+    <string name="task_detail_title">Task Details</string>
+    <string name="save_action">Save</string>
+    <string name="task_description_req">Task Description*</string>
+    <string name="required_fields">*required fields</string>
+
+    <string name="quantity_in_stock">Quantity in stock</string>
+
 </resources>
