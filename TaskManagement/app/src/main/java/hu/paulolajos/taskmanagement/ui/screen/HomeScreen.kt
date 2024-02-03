@@ -1,11 +1,23 @@
 package hu.paulolajos.taskmanagement.ui.screen
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -17,6 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,16 +38,36 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import hu.paulolajos.taskmanagement.data.Task
+import hu.paulolajos.taskmanagement.ui.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
+import hu.paulolajos.taskmanagement.data.Priority
+import java.text.SimpleDateFormat
+import java.util.Date
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
+    val tasks = viewModel.tasks.value
     val coroutineScope = rememberCoroutineScope()
+    val modalSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     var showSheet by remember { mutableStateOf(false) }
+    val onLoading = viewModel.onLoading
+    var updatedTask: Task? = null
 
     Scaffold(
         Modifier.padding(16.dp),
@@ -48,6 +81,11 @@ fun HomeScreen() {
                 .padding(it)
                 .fillMaxSize()
         ) {
+            if (showSheet) {
+                CustomBottomSheets(modalSheetState = modalSheetState, viewModel, updatedTask) {
+                    showSheet = false
+                }
+            }
             Box(Modifier.fillMaxWidth().padding(vertical = 20.dp)) {
 
                 Button(colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary), onClick = {
@@ -59,6 +97,91 @@ fun HomeScreen() {
                     Text("Add Task")
                 }
             }
+            if (tasks.isNotEmpty()) {
+                LazyColumn(
+                    reverseLayout = false,
+
+                    verticalArrangement = Arrangement.spacedBy(20.dp)
+                ) {
+                    items(items = tasks, key = { task -> task.taskId!! }) { task ->
+                        AnimatedVisibility(
+                            visible = !onLoading,
+                            enter = expandVertically(),
+                            exit = shrinkVertically()
+                        ) {
+                            Box(Modifier.animateEnterExit(enter = scaleIn(), exit = scaleOut())) {
+                                TaskCard(task, {
+                                    viewModel.deleteTask(task)
+                                    updatedTask = null
+                                }) {
+                                    showSheet = true
+                                    updatedTask = task
+                                }
+                            }
+                        }
+                    }
+
+                }
+                AnimatedVisibility(visible = onLoading) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("Insert a New Task")
+                }
+            }
         }
     }
+}
+
+
+@Composable
+fun TaskCard(task: Task, onDelete: () -> Unit, onClick: () -> Unit) {
+    val cardColor = when (task.priority) {
+        Priority.LOW -> Color.Green
+        Priority.MEDIUM -> Color.Yellow
+        Priority.HIGH -> Color.Red
+    }
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onClick()
+            },
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(containerColor = cardColor),
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 5.dp)
+    ) {
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = task.name,
+
+                    color = Color.Black,
+                    style = TextStyle(fontSize = 20.sp)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = task.date,
+                    color = Color.Black
+                )
+            }
+            IconButton(onClick = onDelete) {
+                Icon(Icons.Default.Close, contentDescription = null)
+            }
+        }
+    }
+}
+
+@SuppressLint("SimpleDateFormat")
+fun convertMillisToDate(millis: Long): String {
+    val formatter = SimpleDateFormat("dd/MM/yyyy")
+    return formatter.format(Date(millis))
 }
