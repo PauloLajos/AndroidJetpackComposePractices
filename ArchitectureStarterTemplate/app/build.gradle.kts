@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.devToolsKsp)
+    alias(libs.plugins.dagger.hilt.plugin)
 }
 
 android {
@@ -40,6 +42,9 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.compiler)
 
     implementation(project(":data"))
     implementation(project(":ui"))

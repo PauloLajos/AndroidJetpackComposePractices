@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "hu.paulolajos.ui"
+    namespace = "hu.paulolajos.mainmodel"
     compileSdk = 34
 
     defaultConfig {
@@ -14,9 +14,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -62,16 +59,13 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.navigation.compose)
 
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
 
-    implementation(project(":feature:mainmodel"))
+    implementation(project(":ui"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
 }

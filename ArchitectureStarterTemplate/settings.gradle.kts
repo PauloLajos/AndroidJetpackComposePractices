@@ -17,3 +17,4 @@ rootProject.name = "Architecture Starter Template"
 include(":app")
 include(":ui")
 include(":data")
+include(":feature:mainmodel")
