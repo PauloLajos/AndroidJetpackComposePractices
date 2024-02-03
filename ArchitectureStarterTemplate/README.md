@@ -1,0 +1,1 @@
+source: https://github.com/android/architecture-templates/tree/multimodule
