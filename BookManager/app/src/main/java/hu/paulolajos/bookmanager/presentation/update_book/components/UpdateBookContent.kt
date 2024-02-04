@@ -13,10 +13,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import hu.paulolajos.bookmanager.core.Constants.Companion.AUTHOR
-import hu.paulolajos.bookmanager.core.Constants.Companion.BOOK_TITLE
-import hu.paulolajos.bookmanager.core.Constants.Companion.UPDATE_BUTTON
+import hu.paulolajos.bookmanager.R
 import hu.paulolajos.bookmanager.domain.model.Book
 
 @Composable
@@ -40,7 +39,7 @@ fun UpdateBookContent(
             },
             placeholder = {
                 Text(
-                    text = BOOK_TITLE
+                    text = stringResource(id = R.string.book_title)
                 )
             }
         )
@@ -54,7 +53,7 @@ fun UpdateBookContent(
             },
             placeholder = {
                 Text(
-                    text = AUTHOR
+                    text = stringResource(id = R.string.author)
                 )
             }
         )
@@ -65,7 +64,7 @@ fun UpdateBookContent(
             }
         ) {
             Text(
-                text = UPDATE_BUTTON
+                text = stringResource(id = R.string.update_button)
             )
         }
     }

@@ -6,7 +6,8 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import hu.paulolajos.bookmanager.core.Constants.Companion.ADD_BOOK
+import androidx.compose.ui.res.stringResource
+import hu.paulolajos.bookmanager.R
 
 @Composable
 fun AddBookFloatingActionButton(
@@ -18,7 +19,7 @@ fun AddBookFloatingActionButton(
     ) {
         Icon(
             imageVector = Icons.Default.Add,
-            contentDescription = ADD_BOOK
+            contentDescription = stringResource(id = R.string.add_book)
         )
     }
 }

@@ -12,8 +12,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import hu.paulolajos.bookmanager.R
-import hu.paulolajos.bookmanager.core.Constants.Companion.DELETE_BOOK
 
 @Composable
 fun DeleteIcon(
@@ -28,7 +28,7 @@ fun DeleteIcon(
     ) {
         Icon(
             imageVector = Icons.Default.Delete,
-            contentDescription = DELETE_BOOK,
+            contentDescription = stringResource(id = R.string.delete_book),
         )
         if (deleteConfirmationRequired) {
             DeleteConfirmationDialog(

@@ -16,12 +16,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import hu.paulolajos.bookmanager.core.Constants.Companion.ADD_BOOK
-import hu.paulolajos.bookmanager.core.Constants.Companion.ADD_BUTTON
-import hu.paulolajos.bookmanager.core.Constants.Companion.AUTHOR
-import hu.paulolajos.bookmanager.core.Constants.Companion.BOOK_TITLE
-import hu.paulolajos.bookmanager.core.Constants.Companion.DISMISS_BUTTON
+import hu.paulolajos.bookmanager.R
 import hu.paulolajos.bookmanager.core.Constants.Companion.EMPTY_STRING
 import hu.paulolajos.bookmanager.domain.model.Book
 import kotlinx.coroutines.job
@@ -41,7 +38,7 @@ fun AddBookAlertDialog(
             onDismissRequest = closeDialog,
             title = {
                 Text(
-                    text = ADD_BOOK
+                    text = stringResource(id = R.string.add_book)
                 )
             },
             text = {
@@ -51,7 +48,7 @@ fun AddBookAlertDialog(
                         onValueChange = { title = it },
                         placeholder = {
                             Text(
-                                text = BOOK_TITLE
+                                text = stringResource(id = R.string.book_title)
                             )
                         },
                         modifier = Modifier.focusRequester(focusRequester)
@@ -69,7 +66,7 @@ fun AddBookAlertDialog(
                         onValueChange = { author = it },
                         placeholder = {
                             Text(
-                                text = AUTHOR
+                                text = stringResource(id = R.string.author)
                             )
                         }
                     )
@@ -84,7 +81,7 @@ fun AddBookAlertDialog(
                     }
                 ) {
                     Text(
-                        text = ADD_BUTTON
+                        text = stringResource(id = R.string.add_button)
                     )
                 }
             },
@@ -93,7 +90,7 @@ fun AddBookAlertDialog(
                     onClick = closeDialog
                 ) {
                     Text(
-                        text = DISMISS_BUTTON
+                        text = stringResource(id = R.string.dismiss_button)
                     )
                 }
             }

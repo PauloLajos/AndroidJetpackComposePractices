@@ -8,7 +8,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import hu.paulolajos.bookmanager.core.Constants.Companion.UPDATE_BOOK_SCREEN
+import androidx.compose.ui.res.stringResource
+import hu.paulolajos.bookmanager.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -18,7 +19,7 @@ fun UpdateBookTopBar(
     TopAppBar (
         title = {
             Text(
-                text = UPDATE_BOOK_SCREEN
+                text = stringResource(id = R.string.update_book)
             )
         },
         navigationIcon = {
