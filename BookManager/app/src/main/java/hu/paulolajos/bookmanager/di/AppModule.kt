@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import hu.paulolajos.bookmanager.core.Constants.Companion.BOOK_TABLE
-import hu.paulolajos.bookmanager.data.BookRepositoryImpl
+import hu.paulolajos.bookmanager.data.repository.BookRepositoryImpl
 import hu.paulolajos.bookmanager.data.dao.BookDao
 import hu.paulolajos.bookmanager.data.network.BookDb
 import hu.paulolajos.bookmanager.domain.repository.BookRepository

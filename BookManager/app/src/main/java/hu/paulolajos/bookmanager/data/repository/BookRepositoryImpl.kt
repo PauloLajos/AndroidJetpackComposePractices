@@ -1,4 +1,4 @@
-package hu.paulolajos.bookmanager.data
+package hu.paulolajos.bookmanager.data.repository
 
 import hu.paulolajos.bookmanager.data.dao.BookDao
 import hu.paulolajos.bookmanager.domain.model.Book
