@@ -9,7 +9,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import hu.paulolajos.bookmanager.domain.model.Book
 import hu.paulolajos.bookmanager.presentation.books.BooksViewModel
-import hu.paulolajos.bookmanager.presentation.books.components.BooksContent
 import hu.paulolajos.bookmanager.presentation.update_book.components.UpdateBookContent
 import hu.paulolajos.bookmanager.presentation.update_book.components.UpdateBookTopBar
 
