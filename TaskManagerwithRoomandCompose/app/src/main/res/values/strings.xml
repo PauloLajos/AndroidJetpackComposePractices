@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Task Manager with Room and Compose</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Task Manager</string>
 
     <string name="delete_task">Delete a task.</string>
     <string name="attention">Attention</string>
