@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Book Manager with Room and Compose</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="attention">Attention</string>
+    <string name="delete_question">Are you sure you want to delete:</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>

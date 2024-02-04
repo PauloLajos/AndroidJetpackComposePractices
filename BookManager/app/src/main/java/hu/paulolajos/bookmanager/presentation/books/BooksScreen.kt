@@ -5,6 +5,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,6 +14,7 @@ import hu.paulolajos.bookmanager.presentation.books.components.AddBookAlertDialo
 import hu.paulolajos.bookmanager.presentation.books.components.AddBookFloatingActionButton
 import hu.paulolajos.bookmanager.presentation.books.components.BooksContent
 import hu.paulolajos.bookmanager.presentation.books.components.BooksTopBar
+import kotlinx.coroutines.launch
 
 @Composable
 fun BooksScreen(
@@ -22,6 +24,7 @@ fun BooksScreen(
     val books by viewModel.books.collectAsState(
         initial = emptyList()
     )
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -32,7 +35,9 @@ fun BooksScreen(
                 padding = padding,
                 books = books,
                 deleteBook = { book ->
-                    viewModel.deleteBook(book)
+                    coroutineScope.launch {
+                        viewModel.deleteBook(book)
+                    }
                 },
                 navigateToUpdateBookScreen = navigateToUpdateBookScreen
             )
@@ -64,7 +69,7 @@ fun BooksContentPreview() {
         books = listOf(
             Book(0,"Tom Sawyer","Mark Twain"),
             Book(1,"Huckleberry Finn","Mark Twain"),
-            Book(2,"Egri csillagok","Gárdonyi Géza")
+            Book(2,"Cinderella","Charles Perrault")
         ),
         deleteBook = {},
         navigateToUpdateBookScreen = {}

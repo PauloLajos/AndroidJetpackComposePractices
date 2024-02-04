@@ -55,6 +55,8 @@ fun BookCard(
                 modifier = Modifier.weight(1f)
             )
             DeleteIcon(
+                title = book.title,
+                author = book.author,
                 deleteBook = deleteBook
             )
         }
