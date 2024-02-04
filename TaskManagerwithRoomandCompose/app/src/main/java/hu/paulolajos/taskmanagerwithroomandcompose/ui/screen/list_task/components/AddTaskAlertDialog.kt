@@ -38,7 +38,7 @@ fun AddTaskAlertDialog(
             onDismissRequest = closeDialog,
             title = {
                 Text(
-                    text = stringResource(id = R.string.add_task)
+                    text = stringResource(R.string.add_task)
                 )
             },
             text = {
@@ -48,7 +48,7 @@ fun AddTaskAlertDialog(
                         onValueChange = { title = it },
                         placeholder = {
                             Text(
-                                text = stringResource(id = R.string.task_title)
+                                text = stringResource(R.string.task_title)
                             )
                         },
                         modifier = Modifier.focusRequester(focusRequester)
@@ -66,7 +66,7 @@ fun AddTaskAlertDialog(
                         onValueChange = { description = it },
                         placeholder = {
                             Text(
-                                text = stringResource(id = R.string.task_description)
+                                text = stringResource(R.string.task_description)
                             )
                         }
                     )
@@ -81,7 +81,7 @@ fun AddTaskAlertDialog(
                     }
                 ) {
                     Text(
-                        text = stringResource(id = R.string.add_button)
+                        text = stringResource(R.string.add_button)
                     )
                 }
             },
@@ -90,7 +90,7 @@ fun AddTaskAlertDialog(
                     onClick = closeDialog
                 ) {
                     Text(
-                        text = stringResource(id = R.string.dismiss_button)
+                        text = stringResource(R.string.dismiss_button)
                     )
                 }
             }

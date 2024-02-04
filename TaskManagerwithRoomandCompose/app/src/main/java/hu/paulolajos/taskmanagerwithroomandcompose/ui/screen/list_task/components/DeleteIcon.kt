@@ -28,7 +28,7 @@ fun DeleteIcon(
     ) {
         Icon(
             imageVector = Icons.Default.Delete,
-            contentDescription = stringResource(id = R.string.delete_task),
+            contentDescription = stringResource(R.string.delete_task),
         )
         if (deleteConfirmationRequired) {
             DeleteConfirmationDialog(

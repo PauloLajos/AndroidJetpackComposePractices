@@ -8,6 +8,7 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="add_task">Add a task.</string>
+    <string name="update_task">Update task</string>
     <string name="task_title">Type a task title…</string>
     <string name="task_description">Type a task description…</string>
     <string name="add_button">Add</string>

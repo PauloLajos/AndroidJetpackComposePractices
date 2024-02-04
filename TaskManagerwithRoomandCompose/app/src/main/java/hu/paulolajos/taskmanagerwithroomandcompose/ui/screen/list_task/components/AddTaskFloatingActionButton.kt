@@ -19,7 +19,7 @@ fun AddTaskFloatingActionButton(
     ) {
         Icon(
             imageVector = Icons.Default.Add,
-            contentDescription = stringResource(id = R.string.add_task)
+            contentDescription = stringResource(R.string.add_task)
         )
     }
 }
