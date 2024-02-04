@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Book Manager with Room and Compose</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
