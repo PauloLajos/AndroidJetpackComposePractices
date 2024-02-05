@@ -39,7 +39,7 @@ fun DeleteIcon(
                     deleteTask()
                 },
                 onDeleteCancel = { deleteConfirmationRequired = false },
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+                modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium))
             )
         }
     }

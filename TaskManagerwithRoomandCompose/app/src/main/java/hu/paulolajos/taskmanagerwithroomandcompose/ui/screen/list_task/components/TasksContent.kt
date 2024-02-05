@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import hu.paulolajos.taskmanagerwithroomandcompose.domain.model.Task
@@ -15,12 +16,14 @@ fun TasksContent(
     padding: PaddingValues,
     tasks: Tasks,
     deleteTask: (task: Task) -> Unit,
-    navigateToUpdateTaskScreen: (taskId: Int) -> Unit
+    navigateToUpdateTaskScreen: (taskId: Int) -> Unit,
+    listState: LazyListState
 ) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(padding)
+            .padding(padding),
+        state = listState,
     ) {
         items(
             items = tasks

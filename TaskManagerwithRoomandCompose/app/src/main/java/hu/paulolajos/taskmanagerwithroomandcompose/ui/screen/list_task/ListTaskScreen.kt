@@ -1,9 +1,13 @@
 package hu.paulolajos.taskmanagerwithroomandcompose.ui.screen.list_task
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.dimensionResource
@@ -17,6 +21,7 @@ import hu.paulolajos.taskmanagerwithroomandcompose.ui.screen.list_task.component
 import hu.paulolajos.taskmanagerwithroomandcompose.ui.screen.list_task.components.TasksTopBar
 import kotlinx.coroutines.launch
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun ListTaskScreen(
     viewModel: ListTaskViewModel = hiltViewModel(),
@@ -26,6 +31,11 @@ fun ListTaskScreen(
         initial = emptyList()
     )
     val coroutineScope = rememberCoroutineScope()
+
+    val listState = rememberLazyListState()
+    val fabVisibility by derivedStateOf {
+        listState.firstVisibleItemIndex == 0
+    }
 
     Scaffold(
         topBar = {
@@ -40,7 +50,8 @@ fun ListTaskScreen(
                         viewModel.deleteTask(task)
                     }
                 },
-                navigateToUpdateTaskScreen = navigateToUpdateTaskScreen
+                navigateToUpdateTaskScreen = navigateToUpdateTaskScreen,
+                listState = listState
             )
             AddTaskAlertDialog(
                 openDialog = viewModel.openDialog,
@@ -56,7 +67,8 @@ fun ListTaskScreen(
             AddTaskFloatingActionButton(
                 openDialog = {
                     viewModel.openDialog()
-                }
+                },
+                isVisibleBecauseOfScrolling = fabVisibility
             )
         }
     )
@@ -73,6 +85,7 @@ fun TasksContentPreview() {
             Task(2,"Sport","Bowling")
         ),
         deleteTask = {},
-        navigateToUpdateTaskScreen = {}
+        navigateToUpdateTaskScreen = {},
+        listState = LazyListState()
     )
 }
