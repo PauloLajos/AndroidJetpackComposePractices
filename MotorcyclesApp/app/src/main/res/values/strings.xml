@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">MotorcyclesApp</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="register_screen_title">Register a new motorcycle</string>
+    <string name="brand_name">Brand name</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">DELETE</string>
+    <string name="model">Model</string>
+    <string name="loading_motorcycles">Loading motorcycles…</string>
+    <string name="empty_list_description">\"You don\'t have any motorcycles registered yet\"</string>
+    <string name="screen_motorcycle_title">Motorcycles</string>
+    <string name="filter_icon_title">Sort</string>
 </resources>

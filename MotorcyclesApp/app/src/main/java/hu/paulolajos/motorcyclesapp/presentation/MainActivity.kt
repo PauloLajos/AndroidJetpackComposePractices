@@ -9,8 +9,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import hu.paulolajos.motorcyclesapp.presentation.motorcyclesscreen.MotorcyclesScreenViewModel
 import hu.paulolajos.motorcyclesapp.presentation.navigation.MotorcyclesNavHost
 import hu.paulolajos.motorcyclesapp.presentation.theme.MotorcyclesAppTheme
 
@@ -35,8 +37,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MotorcyclesApp() {
     val navController = rememberNavController()
+    val motorcyclesScreenViewModel: MotorcyclesScreenViewModel = hiltViewModel()
 
     MotorcyclesNavHost(
+        motorcyclesScreenViewModel = motorcyclesScreenViewModel,
         navController = navController
     )
 }
