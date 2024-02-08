@@ -56,7 +56,7 @@ class MotorcyclesScreenViewModel @Inject constructor(
                 getMotorcycles(event.motorcycleOrder)
             }
 
-            is MotorcyclesEvent.ToogleOrderSection -> {
+            is MotorcyclesEvent.ToggleOrderSection -> {
                 _state.value = _state.value.copy(
                     isOrderSectionVisible = !state.value.isOrderSectionVisible
                 )

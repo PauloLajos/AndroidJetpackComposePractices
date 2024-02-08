@@ -28,7 +28,7 @@ fun MotorcyclesNavHost(
                 },
                 fabOnClick = { navController.navigate("${Screen.AddEditMotorcycle.route}/0") },
                 onFilterButtonClick = { motorcyclesScreenViewModel.onEvent(MotorcyclesEvent.Order(it)) },
-                onButtonToggleOrderSelection = { motorcyclesScreenViewModel.onEvent(MotorcyclesEvent.ToogleOrderSection) },
+                onButtonToggleOrderSelection = { motorcyclesScreenViewModel.onEvent(MotorcyclesEvent.ToggleOrderSection) },
                 onDeleteButtonClick = { motorcyclesScreenViewModel.deleteAllMotorcycle() }
             )
         }
@@ -42,7 +42,7 @@ fun MotorcyclesNavHost(
                     defaultValue = 0
                 })
         ) {
-            RegistrationScreen()
+            RegistrationScreen(navController)
         }
     }
 }

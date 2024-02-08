@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -41,7 +40,6 @@ import hu.paulolajos.motorcyclesapp.presentation.motorcyclesscreen.components.Mo
 import hu.paulolajos.motorcyclesapp.presentation.motorcyclesscreen.components.OrderSection
 import hu.paulolajos.motorcyclesapp.presentation.theme.MotorcyclesAppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MotorcycleScreen(
     state: MotorcyclesScreenState,
@@ -152,7 +150,7 @@ fun MotorcycleScreen(
     }
 }
 
-@Preview(showBackground = true, widthDp = 360, heightDp = 640)
+@Preview(showBackground = true, widthDp = 360, heightDp = 640, apiLevel = 33)
 @Composable
 private fun DefaultPreview() {
     MotorcyclesAppTheme {

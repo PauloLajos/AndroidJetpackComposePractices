@@ -47,7 +47,7 @@ fun MotorcyclesApp() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MotorcyclesAppPreview() {
     MotorcyclesAppTheme {
         MotorcyclesApp()
     }
