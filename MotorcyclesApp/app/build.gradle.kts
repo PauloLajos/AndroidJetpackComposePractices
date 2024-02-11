@@ -20,6 +20,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        multiDexEnabled = true
+
     }
 
     buildTypes {
@@ -52,6 +55,8 @@ android {
 }
 
 dependencies {
+
+    implementation("com.android.support:multidex:1.0.3")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
