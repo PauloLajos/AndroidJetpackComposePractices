@@ -23,11 +23,11 @@ class MainViewModel
     fun getPost() =
         viewModelScope.launch {
             mainRepository.getPost().onStart {
-                response.value= ApiState.Loading
+                response.value = ApiState.Loading
             }.catch {
-                response.value= ApiState.Failure(it)
+                response.value = ApiState.Failure(it)
             }.collect {
-                response.value=ApiState.Success(it)
+                response.value = ApiState.Success(it)
             }
         }
 }

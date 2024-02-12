@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ProvidableCompositionLocal
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import hu.paulolajos.composeretrofitdemo.ui.composables.GetData
 import hu.paulolajos.composeretrofitdemo.ui.theme.ComposeRetrofitDemoTheme
@@ -24,23 +26,21 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainApp()
+                    GetData()
                 }
             }
         }
     }
 }
 
-@Composable
-fun MainApp() {
-    val mainViewModel: MainViewModel = hiltViewModel()
-    GetData(mainViewModel = mainViewModel)
-}
+val LocalGetDataPreviewMode: ProvidableCompositionLocal<Boolean> = compositionLocalOf { false }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, apiLevel = 33)
 @Composable
-fun MainAppPreview() {
+fun GetDataPreview() {
     ComposeRetrofitDemoTheme {
-        //
+        CompositionLocalProvider(LocalGetDataPreviewMode provides true) {
+            GetData()
+        }
     }
 }

@@ -12,31 +12,49 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import hu.paulolajos.composeretrofitdemo.retrofit.Post
+import hu.paulolajos.composeretrofitdemo.ui.LocalGetDataPreviewMode
 import hu.paulolajos.composeretrofitdemo.ui.MainViewModel
 import hu.paulolajos.composeretrofitdemo.util.ApiState
 
 @Composable
-fun GetData(mainViewModel: MainViewModel) {
-    when (val result = mainViewModel.response.value) {
-        is ApiState.Success -> {
-            LazyColumn {
-                items(result.data) { response ->
-                    EachRow(post = response)
-                }
+fun GetData() {
+    if (LocalGetDataPreviewMode.current) {
+        LazyColumn {
+            val data = listOf<Post>(
+                Post(0,"Post1"),
+                Post(1,"Post2"),
+                Post(2,"Post3"),
+                Post(3,"Post4"),
+            )
+            items(data) { response ->
+                EachRow(post = response)
             }
         }
+    } else {
+        val mainViewModel: MainViewModel = hiltViewModel()
 
-        is ApiState.Failure -> {
-            Text(text = "${result.msg}")
-        }
+        when (val result = mainViewModel.response.value) {
+            is ApiState.Success -> {
+                LazyColumn {
+                    items(result.data) { response ->
+                        EachRow(post = response)
+                    }
+                }
+            }
 
-        ApiState.Loading -> {
-            CircularProgressIndicator()
-        }
+            is ApiState.Failure -> {
+                Text(text = "${result.msg}")
+            }
 
-        ApiState.Empty -> {
+            ApiState.Loading -> {
+                CircularProgressIndicator()
+            }
 
+            ApiState.Empty -> {
+
+            }
         }
     }
 }
@@ -59,5 +77,4 @@ fun GetData(mainViewModel: MainViewModel) {
             modifier = Modifier.padding(10.dp)
         )
     }
-
 }
